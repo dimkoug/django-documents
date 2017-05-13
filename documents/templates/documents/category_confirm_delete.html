@@ -1,5 +1,7 @@
 {% extends "documents/base.html" %}
 
+{% block title %}Delete - {{object}}{% endblock %}
+
 {% block content %}
 <div id="pjax" data-pjax-container>
 <form action="" method="post">{% csrf_token %}

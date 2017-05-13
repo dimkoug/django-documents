@@ -25,9 +25,6 @@ class CategoryCreate(PJAXResponseMixin, CreateView):
     form_class = CategoryForm
     pjax_template_name = "category_form.html"
 
-    def form_valid(self, form):
-        return super(CategoryCreate, self).form_valid(form)
-
 
 class CategoryUpdate(PJAXResponseMixin, UpdateView):
     model = Category
@@ -74,6 +71,10 @@ class DocumentUpdate(PJAXResponseMixin, UpdateView):
     form_class = DocumentForm
     template_name_suffix = '_update_form'
     pjax_template_name = "document_update_form.html"
+
+    def form_valid(self, form):
+        form.instance.name = form.instance.document.name
+        return super(DocumentUpdate, self).form_valid(form)
 
 
 class DocumentDelete(PJAXResponseMixin, DeleteView):

@@ -1,5 +1,7 @@
 {% extends "documents/base.html" %}
 
+{% block title %} Category List{% endblock %}
+
 {% block content %}
 <div id="pjax" data-pjax-container>
 <h1 class="heading">Category List</h1>
@@ -17,8 +19,8 @@
       {% for category in object_list %}
       <tr>
         <td><a data-pjax data-page-id='category-detail' href="{{category.get_absolute_url}}">{{category}}</a></td>
-        <td><a data-pjax data-page-id='category-update' href="{% url 'documents:category.update' category.pk %}"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
-            <a data-pjax data-page-id='category-delete' href="{% url 'documents:category.delete' category.pk %}"><i class="fa fa-times fa-2x" aria-hidden="true"></i></a>
+        <td><a data-pjax data-page-id='category-update' href="{% url 'documents:category.update' category.pk %}"><i class="fa fa-pencil-square-o fa-2x"  aria-hidden="true"></i></a>
+            <a data-pjax data-page-id='category-delete' href="{% url 'documents:category.delete' category.pk %}"><i class="fa fa-times fa-2x" style="color:red;" aria-hidden="true"></i></a>
         </td>
       </tr>
       {% endfor %}
