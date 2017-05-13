@@ -1,0 +1,43 @@
+{% extends "documents/base.html" %}
+
+{% block content %}
+<div id="pjax" data-pjax-container>
+<h1 class="heading">Document List</h1>
+<div class="row">
+  <div class="col-md-12">
+      <a data-pjax data-page-id='document-create' href="{% url 'documents:document.add' %}" class="btn btn-primary pull-right">Create Document</a>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-md-12">
+      <hr>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class='table table-striped table-condensed'>
+      <thead>
+        <th>Category</th>
+        <th>File</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        {% for document in object_list %}
+        <tr>
+          <td>{{document.category}}</td>
+          <td><a data-pjax data-page-id='document-detail' href="{{document.get_absolute_url}}">{{document.name}}</a></td>
+          <td><a data-pjax data-page-id='document-update' href="{% url 'documents:document.update' document.pk %}"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>
+            <a data-pjax data-page-id='document-delete' href="{% url 'documents:document.delete' document.pk %}"><i class="fa fa-times fa-2x" aria-hidden="true"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</div>
+{% endblock %}
