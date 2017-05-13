@@ -15,7 +15,6 @@ class DocumentForm(forms.ModelForm):
         widget=forms.ClearableFileInput(attrs={'multiple': True}))
 
     def __init__(self, *args, **kwargs):
-        # first call parent's constructor
         super(DocumentForm, self).__init__(*args, **kwargs)
         if self.instance.pk:
             self.fields['document'].widget.attrs['multiple'] = False
