@@ -43,6 +43,18 @@ class DocumentList(PJAXResponseMixin, ListView):
     model = Document
     pjax_template_name = "document_list.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(DocumentList, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
+
+    def get_queryset(self):
+        queryset = super(DocumentList, self).get_queryset()
+        if self.request.GET.get("category"):
+            queryset = queryset.filter(
+                category_id=self.request.GET.get('category'))
+        return queryset
+
 
 class DocumentDetail(PJAXResponseMixin, DetailView):
 
