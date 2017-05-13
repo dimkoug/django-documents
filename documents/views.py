@@ -53,6 +53,9 @@ class DocumentList(PJAXResponseMixin, ListView):
         if self.request.GET.get("category"):
             queryset = queryset.filter(
                 category_id=self.request.GET.get('category'))
+        if self.request.GET.get("filename", None) is not None:
+            queryset = queryset.filter(
+                name__contains=self.request.GET.get("filename"))
         return queryset
 
 
